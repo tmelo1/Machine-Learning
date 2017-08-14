@@ -1,0 +1,381 @@
+%% Style file for CS.479/679 FALL2014
+%% Similar to:
+%%   http://erdos.stanford.edu/ee374/lecture-notes/ee374.sty
+%%  http://www.stanford.edu/class/ee477/Sample/ee477.sty
+%%  http://theory.lcs.mit.edu/classes/6.895/fall03/scribe/
+%%  http://courses.cs.washington.edu/courses/cse599s/12sp/scribes/cse599s12sp.sty
+%%
+
+\def\fileversion{1.0}
+\def\filedate{2007/29/03}
+\NeedsTeXFormat{LaTeX2e}
+
+\usepackage{graphicx}
+\usepackage{amsmath,amssymb,amsthm,amsfonts}
+
+%% Page size
+
+\setlength{\oddsidemargin}{0pt}
+\setlength{\evensidemargin}{0pt}
+\setlength{\textwidth}{6.5in}
+\setlength{\topmargin}{0in}
+\setlength{\textheight}{8.5in}
+
+%% Misc
+
+% Some hacks to make HTML happier.
+\newcommand{\vskipargs}[1]{\vskip #1}
+\newcommand{\newproc}{\hrule\vskipargs{1ex plus 0.1ex minus 0.1ex}}
+
+% Tilde for webstuff
+\newcommand{\webtilde}{\raisebox{-.8ex}\~}
+
+% Comment out chunks.
+\newcommand{\punt}[1]{}
+\newcommand{\remove}[1]{}
+
+% Footnote commands.
+\newcommand{\footnotenonumber}[1]{{\def\thempfn{}\footnotetext{#1}}}
+\newcommand{\footnotetight}[1]{\footnote{\renewcommand\baselinestretch{1}\footnotesize #1}}
+
+% Commands for handout headers
+\newcommand{\handout}[5]{
+   \noindent
+   \begin{center}
+   \framebox{ \vbox{ \hbox to 5.78in { {\bf CS.479, Fall 2016, Representation Learning} \hfill #5 }
+       \vspace{4mm}
+       \hbox to 5.78in { {\Large \hfill #2  \hfill} }
+       \vspace{2mm}
+       \hbox to 5.78in { {\it #3 \hfill #4} }
+     }
+   }
+   \end{center}
+   \vspace*{4mm}
+   \newcommand{\lecturenum}{#1}
+   \addcontentsline{toc}{chapter}{Lecture #1 -- #2}
+}
+
+\newcommand{\lecturetitle}[5]{\handout{#1}{#2}{Lecturer:
+    #4}{Scribe: #3}{Lecture #1 - #5}}
+
+% Assorted theorem/proof environments
+
+\newtheorem{theorem}{Theorem}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{observation}[theorem]{Observation}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{claim}[theorem]{Claim}
+\newtheorem{fact}[theorem]{Fact}
+\newtheorem{assumption}[theorem]{Assumption}
+
+\newcounter{example}
+\newenvironment{example}[1][]
+ {\refstepcounter{example}{\bf Example~\arabic{example}~#1}}{}
+ \renewcommand{\theexample}{\arabic{example}}
+
+% Figure/Tables Stuff
+
+\makeatletter
+\def\fnum@figure{{\bf Figure \thefigure}}
+\def\fnum@table{{\bf Table \thetable}}
+\long\def\@mycaption#1[#2]#3{\addcontentsline{\csname
+  ext@#1\endcsname}{#1}{\protect\numberline{\csname
+  the#1\endcsname}{\ignorespaces #2}}\par
+  \begingroup
+    \@parboxrestore
+    \small
+    \@makecaption{\csname fnum@#1\endcsname}{\ignorespaces #3}\par
+  \endgroup}
+\def\mycaption{\refstepcounter\@captype \@dblarg{\@mycaption\@captype}}
+\makeatother
+
+\newcommand{\figcaption}[1]{\mycaption[]{#1}}
+\newcommand{\tabcaption}[1]{\mycaption[]{#1}}
+\newcommand{\head}[1]{\chapter[Lecture \##1]{}}
+\newcommand{\mathify}[1]{\ifmmode{#1}\else\mbox{$#1$}\fi}
+\renewcommand{\Pr}[1]{\mathify{\mbox{Pr}\left[#1\right]}}
+\newcommand{\Exp}[1]{\mathify{\mbox{Exp}\left[#1\right]}}
+\newcommand{\bigO}O
+\newcommand{\set}[1]{\mathify{\left\{ #1 \right\}}}
+\def\half{\frac{1}{2}}
+
+\def\implies{\Rightarrow}
+\def\sizeof#1{\left| #1\right|}
+\def\setof#1{\left\{ #1\right\}  }
+
+%% Math Stuff, Symbols
+\newcommand{\field}[1]{\mathbb{#1}}
+\newcommand{\N}{\field{N}} % natural numbers
+% \newcommand{\R}{\field{R}} % real numbers
+\newcommand{\Z}{\field{Z}} % integers
+\renewcommand{\Re}{\R} % reals
+\newcommand{\1}{{\bf 1}} % vector of all 1's
+\newcommand{\I}[1]{\mathbb{I}_{\left\{#1\right\}}} % indicator function
+\newcommand{\tends}{{\rightarrow}} % arrow for limits
+\newcommand{\ra}{{\rightarrow}} % abbreviation for right arrow
+\newcommand{\PR}{\mathsf{P}} % probability
+\newcommand{\E}{\mathsf{E}} % expectation
+\newcommand{\subjectto}{\mbox{\rm subject to}} % subject to
+% \newcommand{\norm}[1]           {\left\| #1\right\|}
+\newcommand{\card}[1]           {\left| #1\right|}
+%% some caligraphic symbols
+\newcommand{\Ascr}{{\cal A}}
+\newcommand{\Bscr}{{\cal B}}
+\newcommand{\Cscr}{{\cal C}}
+\newcommand{\Dscr}{{\cal D}}
+\newcommand{\Escr}{{\cal E}}
+\newcommand{\Fscr}{{\cal F}}
+\newcommand{\Gscr}{{\cal G}}
+\newcommand{\Hscr}{{\cal H}}
+\newcommand{\Iscr}{{\cal I}}
+\newcommand{\Jscr}{{\cal J}}
+\newcommand{\Kscr}{{\cal K}}
+\newcommand{\Lscr}{{\cal L}}
+\newcommand{\Mscr}{{\cal M}}
+\newcommand{\Nscr}{{\cal N}}
+\newcommand{\Oscr}{{\cal O}}
+\newcommand{\Pscr}{{\cal P}}
+\newcommand{\Qscr}{{\cal Q}}
+\newcommand{\Rscr}{{\cal R}}
+\newcommand{\Sscr}{{\cal S}}
+\newcommand{\Tscr}{{\cal T}}
+\newcommand{\Uscr}{{\cal U}}
+\newcommand{\Vscr}{{\cal V}}
+\newcommand{\Wscr}{{\cal W}}
+\newcommand{\Xscr}{{\cal X}}
+\newcommand{\Yscr}{{\cal Y}}
+\newcommand{\Zscr}{{\cal Z}}
+
+
+%%%%%%%%
+%%%%%%%%%
+%%%% Copied from defs.tex
+\def \lbrack {(}
+\def \rbrack {)_\Delta}
+\def \one {{\bf 1}}
+\def \e {{\bf 1}}
+\def \E {\mathbb{E}}
+\def \hP {\hat{\P}}
+\def \hPR {\hat{\P R}}
+\def \hK {\hat{\K}}
+% \def \I {{\mathcal{I}}}
+% \def \Ii {{{I}}}
+\def \K {\textrm{K}}
+\def \Lam {{ \Lambda}}
+\def \Mm {{{M}}}
+\def \n {{{n}}}
+\def \o {{o}}
+\def \O {{O}}
+\def \ori {{\bf 0}}
+% \def \P {{ P}}
+\def \Pp {{\mathcal{Q}}}
+% \def \Q {{ Q}}
+\def \Rr{\textrm{R}}
+\def \Ss {{\mathcal{S}}}
+\def \SO {\textrm{SO}}
+\def \tE {\tilde{\E}}
+\def \tK {\tilde{\K}}
+\def \tlam {\tilde{\lambda}}
+\def \tLam {\tilde{\Lam}}
+\def \tP {\tilde{\P}}
+\def \tQ {\tilde{Q}}
+\def \tRr {\tilde{\Rr}}
+\def \tM {\tilde{M}}
+\def \tSs {\tilde{\mathcal{S}}}
+\newcommand{\Xcal}{\mathcal{X}}
+\newcommand{\Ccal}{\mathcal{C}}
+\newcommand{\Acal}{\mathcal{A}}
+\def \tX {\tilde{X}}
+\def \tY {\tilde{Y}}
+
+\def \tx {\tilde{x}}
+\def \ty {\tilde{y}}
+% \def \u {{{u}}}
+\newcommand{\w}{\textrm{w}}
+
+%\theoremstyle{plain}
+%\newtheorem{properties}{Properties}
+%\newtheorem{proposition}{Proposition}
+%\newtheorem{theorem}{Theorem}
+%\newtheorem{lemma}{Lemma}
+%\newtheorem{corollary}{Corollary}
+%\newtheorem{claim}{Claim}[subsection]
+
+\newtheorem{defn}{Def}
+\newtheorem{exmp}{Ex}
+\def\bd{\begin{defn}}
+\def\ed{\end{defn}}
+\newtheorem{rem}{Remark}
+\def\br{\begin{rem}}
+\def\er{\end{rem}}
+\def\bp{\begin{prop}}
+\def\ep{\end{prop}}
+\def\bc{\begin{cor}}
+\def\ec{\end{cor}}
+\def\bl{\begin{lem}}
+\def\el{\end{lem}}
+
+% Spaces
+\newcommand{\Real}{\mathbb{R}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\Comp}{C}
+\newcommand{\Nat}{N}
+\newcommand{\Sym}{\mathrm{Sym}}
+% Greek letters
+\newcommand{\sigmab}{\bar\sigma}
+\newcommand{\tSigma}{\tilde{\Sigma}}
+% Other
+\newcommand{\ttext}[1]{\qquad\mbox{#1}\qquad}
+\newcommand{\tr}{\textrm{trace}}
+\newcommand{\tV}{\tilde{V}}
+
+\def\co{co}
+\def\cov{\textrm{cov}}
+\def\var{\textrm{var}}
+\def\diag{diag}
+\def\spa{\textrm{span}}
+% \def\rank{rank}
+\def\Dir{Dir}
+\def\dBeta{Beta}
+
+\newcommand{\proj}[2][]{\mathcal{P}_{#1}\left(#2\right)}
+\newcommand{\pr}[1]{\mathrm{Pr}\left\{#1\right\}}
+\newcommand{\ex}[2][]{\mathbb{E}_{#1}\left[#2\right]}
+\newcommand{\abs}[1]{\left\lvert#1\right\rvert}
+\newcommand{\norm}[2]{\left\lVert#1\right\rVert_{#2}}
+\newcommand{\inn}[1]{\left\langle#1\right\rangle}
+% \newcommand{\p}{\partial}
+\newcommand{\p}{\textrm{p}}
+\newcommand{\pp}[2]{{\frac{\partial #1}{\partial #2}}}
+\newcommand{\Ran}{\mathscr{R}}
+\newcommand{\st}{\;\big\lvert\;}
+
+% TODO comments
+\newcommand{\todo}[1]{ \textcolor{red}{TODO: #1} }
+%%%%%% End defs.tex %%%%%
+\def\D{{\textbf D}}
+\def\c{{\textbf c}} 
+\def\d{{\textbf d}} 
+\def\E{{\textrm E}} 
+\def\Ee{{\mathcal E}}
+\def\fig{Figure } 
+\def\figs{Figures}
+\def\F{{\textrm{F}}}
+\def\Ff{{\mathcal{F}}}
+\def\G{{\textrm{G}}}
+\def\GL{\textrm{GL}}
+\def \hE{\hat{\Ee}}
+\def \hy {\hat{\y}}
+\def \hx {\hat{\x}}
+\def\hRr{\hat{\textrm R}}
+\def \htt {\hat{\t}}
+\def \hP {\hat{\P}}
+\def\H{{\mathcal H}} 
+\newcommand{\Hh}{\mathcal{H}}
+\def\K{{\textrm{K}}} 
+\def\Lam{{\Lambda}}
+\def \I {{\textrm{I}}}
+\def \V {{\textrm{V}}}
+\def\L{{\textrm{L}}}
+\def\LL{{\mathscr L}} 
+\def\Lc{|\A|}
+\newcommand{\modk}[2]{\lfloor #1 \rfloor_{#2}}
+
+
+% \newcommand{\V}[1]{{\textrm{X}}^{(#1)}}
+\newcommand{\Y}{{\textrm{Y}}}
+
+\def\C{{\textrm{C}}} 
+
+\def\ms{ms}
+\def\M{{\textrm{M}}}
+\def\Mm{{\textrm{M}}}
+\def\N{{\mathbb N}}
+\def\Nn{{\mathcal N}}
+\def\O{{\mathcal{O}}}
+\newcommand{\Ow}{\Omega}
+\newcommand{\ow}{\omega}
+% \def\P{{\mathcal P}} 
+\def\Pp{{\mathbb{P}}}
+\def\q{{\textrm q}} 
+\def\Q{{\textrm{Q}}}
+\def\Qq{{\textrm{Q}}}
+% \def\R{{\mathbb{R}}}
+\def \Rr {{\textrm R}}
+\def \Rg {\ \buildrel {\circ} \over { R}}
+\def\s{{\textrm{s}}}
+\def\sec{Section} 
+\def\skew{{\textbf{skew}}}
+\def\so{{\mathfrak{so}}}
+\def\S{{\textrm{S}}} 
+\def\SA{{\textrm{SA}}}
+\def\SE{{\textrm{SE}}}
+\def\SL{{\textrm{SL}}}
+\def\SO{{\textrm{SO}}}
+\def \Ss {{\textrm{S}}}
+\def \SS {{\textrm{S}}}
+\def\SU{{\textrm{SU}}}
+\def \tK {\tilde{\K}}
+\def \tlam {\tilde{\lambda}}
+\def \tLam {\tilde{\Lam}}
+\def \tP {\tilde{\P}}
+\def \tQ {\tilde{\bf Q}}
+\def \tRr {\tilde{\Rr}}
+\def \tM {\tilde{M}}
+\def \tSs {\tilde{\mathcal{S}}}
+
+
+\def\t{{\textrm{t}}}
+\def\til{$\sim$}
+\def\T{\textrm{T}} 
+\def\Tr{\mbox{Tr}}
+\def\u{{\textrm{u}}} 
+\def \U {{\textrm{U}}}
+\def\v{{\textrm{v}}}
+% \def \Vv {{\textrm{V}}}
+\def\K{{\textrm{K}}}
+
+\def\rank{{\textrm{rank}}} 
+\def\r{{\textrm{r}}}
+\def\Ww{{\mathcal{W}}}
+\def\W{{\textrm{W}}}
+\def\x{{\textrm{x}}}
+\def\X{{\textrm{X}}}
+\def\Xx{{\mathcal{X}}}
+\def\uu{{\textrm{u}}}
+% \def\vv{{\textrm{v}}}
+\def\Yy{{\mathcal{Y}}} 
+\def \y {{\textrm{y}}}
+\def\z{{\textrm{z}}} 
+\def\Z{{\mathbb Z}} 
+\def\zero{{\textrm{0}}} 
+\def\Ll{{\textrm L}} 
+\def\P{{\textrm{P}}}
+\newcommand{\Fcal}{\mathcal{F}}
+\def\ms{ms}
+\def\til{$\sim$}
+\def\kth{{\em k}th\ }
+\def\k+1{{\em k+1}st}
+\def\matlab{{\tt MATLAB}}
+%%%% End-old -defs
+
+
+
+
+%% math operators
+%\newcommand\argmin{\mathop{\mbox{{\rm argmin}}}\limits}
+%\newcommand\argmax{\mathop{\mbox{{\rm argmax}}}\limits}
+%\newcommand\maximize{\mathop{\mbox{{\rm maximize}}}\limits}
+%\newcommand\minimize{\mathop{\mbox{{\rm minimize}}}\limits}
+\DeclareMathOperator*{\argmin}{argmin}
+\DeclareMathOperator*{\argmax}{argmax}
+\DeclareMathOperator*{\maximize}{maximize}
+\DeclareMathOperator*{\minimize}{minimize}
+
+
+\newenvironment{lecture}[4]{\begin{document}
+    \lecturetitle{#1}{#2}{#3}{#4}}{}
+
+\newcommand{\theend}{\end{document}}
